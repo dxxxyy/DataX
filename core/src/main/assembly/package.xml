@@ -2,11 +2,15 @@
         xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
-    <id></id>
+
+    <!-- 添加一个ID -->
+    <id>datax-assembly</id>
+
     <formats>
         <format>dir</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
+
     <fileSets>
         <!-- for bin -->
         <fileSet>
@@ -18,8 +22,9 @@
                 <exclude>*.pyc</exclude>
             </excludes>
             <directoryMode>775</directoryMode>
-            <outputDirectory>/bin</outputDirectory>
+            <outputDirectory>bin</outputDirectory>
         </fileSet>
+
         <!-- for scripts -->
         <fileSet>
             <directory>src/main/script</directory>
@@ -27,71 +32,60 @@
                 <include>*.*</include>
             </includes>
             <directoryMode>775</directoryMode>
-            <outputDirectory>/script</outputDirectory>
+            <outputDirectory>script</outputDirectory>
         </fileSet>
+
         <!-- for configs -->
         <fileSet>
             <directory>src/main/conf</directory>
             <includes>
                 <include>*.*</include>
             </includes>
-            <outputDirectory>/conf</outputDirectory>
+            <outputDirectory>conf</outputDirectory>
         </fileSet>
+
         <!-- for engine -->
         <fileSet>
             <directory>target/</directory>
             <includes>
                 <include>datax-core-0.0.1-SNAPSHOT.jar</include>
             </includes>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>lib</outputDirectory>
         </fileSet>
 
-        <!--<fileSet>-->
-            <!--<directory>src/main/log/</directory>-->
-            <!--<includes>-->
-                <!--<include>*.log</include>-->
-            <!--</includes>-->
-            <!--<outputDirectory>/log</outputDirectory>-->
-        <!--</fileSet>-->
-
-        <!--<fileSet>-->
-            <!--<directory>src/main/log/</directory>-->
-            <!--<includes>-->
-                <!--<include>*.log</include>-->
-            <!--</includes>-->
-            <!--<outputDirectory>/log_perf</outputDirectory>-->
-        <!--</fileSet>-->
-
+        <!-- for jobs -->
         <fileSet>
             <directory>src/main/job/</directory>
             <includes>
                 <include>*.json</include>
             </includes>
-            <outputDirectory>/job</outputDirectory>
+            <outputDirectory>job</outputDirectory>
         </fileSet>
 
+        <!-- for tools -->
         <fileSet>
             <directory>src/main/tools/</directory>
             <includes>
                 <include>*.*</include>
             </includes>
-            <outputDirectory>/tools</outputDirectory>
+            <outputDirectory>tools</outputDirectory>
         </fileSet>
 
+        <!-- for temporary files -->
         <fileSet>
             <fileMode>777</fileMode>
             <directory>src/main/tmp</directory>
             <includes>
                 <include>*.*</include>
             </includes>
-            <outputDirectory>/tmp</outputDirectory>
+            <outputDirectory>tmp</outputDirectory>
         </fileSet>
     </fileSets>
 
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>lib</outputDirectory>
             <scope>runtime</scope>
         </dependencySet>
     </dependencySets>

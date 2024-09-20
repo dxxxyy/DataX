@@ -5,6 +5,8 @@ import com.alibaba.datax.common.exception.DataXException;
 import com.alibaba.datax.common.plugin.RecordSender;
 import com.alibaba.datax.common.statistics.PerfRecord;
 import com.alibaba.datax.common.util.Configuration;
+import com.alibaba.datax.common.util.StrUtil;
+import com.alibaba.druid.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,9 @@ public class HBase20xSQLReaderTask {
 
     public void readRecord(RecordSender recordSender) {
         String querySql = readerConfig.getString(Constant.QUERY_SQL_PER_SPLIT);
+        if(StringUtils.isEmpty(querySql)) {
+            return;
+        }
         LOG.info("Begin to read record by Sql: [{}\n] {}.", querySql);
         HBase20SQLReaderHelper helper = new HBase20SQLReaderHelper(readerConfig);
         Connection conn = helper.getConnection(readerConfig.getString(Key.QUERYSERVER_ADDRESS),

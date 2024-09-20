@@ -1,27 +1,30 @@
-<assembly
-        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
-    <id></id>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+
+    <id>datax-assembly</id> <!-- 添加唯一ID -->
+
     <formats>
-        <format>dir</format>
+        <format>dir</format> <!-- 输出为目录格式 -->
     </formats>
+
     <includeBaseDirectory>false</includeBaseDirectory>
+
     <fileSets>
         <fileSet>
-            <directory>target/</directory>
+            <directory>target/</directory> <!-- 指定源目录为 target -->
             <includes>
-                <include>datax-transformer-0.0.1-SNAPSHOT.jar</include>
+                <include>datax-transformer-0.0.1-SNAPSHOT.jar</include> <!-- 包含的 JAR 文件 -->
             </includes>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>lib</outputDirectory> <!-- 修正为相对路径 -->
         </fileSet>
-   </fileSets>
+    </fileSets>
 
     <dependencySets>
         <dependencySet>
-            <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>/lib</outputDirectory>
-            <scope>runtime</scope>
+            <useProjectArtifact>false</useProjectArtifact> <!-- 不包含项目自身的 Artifact -->
+            <outputDirectory>lib</outputDirectory> <!-- 修正为相对路径 -->
+            <scope>runtime</scope> <!-- 仅包含运行时依赖 -->
         </dependencySet>
     </dependencySets>
 </assembly>
